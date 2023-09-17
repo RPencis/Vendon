@@ -6,10 +6,16 @@ class Test extends Model
 {
     protected $id;
     protected $name;
+    protected $created_at;
+    protected $questions;
 
-    public function getAll(): iterable
+    public function __construct()
     {
-        return [];
+
+        /**
+         * The database table name.
+         */
+        parent::__construct("tests");
     }
 
     /**
@@ -50,5 +56,39 @@ class Test extends Model
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * Get the value of created_at
+     */
+    public function getCreated_at()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set the value of created_at
+     *
+     * @return  self
+     */
+    public function setCreated_at($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of questions
+     */
+    public function getQuestions()
+    {
+        if(null == $this->questions){
+            $model = new Question();
+            $this->questions = $model->getAllForTest($this->id);
+            
+        }
+        
+        return $this->questions;
     }
 }

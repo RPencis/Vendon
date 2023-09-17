@@ -39,20 +39,21 @@ abstract class Model
 
         $this->_table = $table_name;
 
-        if(!empty($data)){
-            foreach($data as $key => $value){
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
                 $this->$key = $value;
             }
         }
     }
 
-    protected function dbToModel($data, $model){
-        foreach($data as $key => $value){
-           
-            $newKey = 'set'.ucfirst($key);
+    protected function dbToModel($data, $model)
+    {
+        foreach ($data as $key => $value) {
+
+            $newKey = 'set' . ucfirst($key);
             $model->$newKey($value);
         }
-        
+
         return $model;
     }
 
@@ -64,7 +65,29 @@ abstract class Model
      * @access  public
      * @since   Method available since Release 1.0.0
      */
-    abstract function getAll(): iterable;
+    public function getAll()
+    {
+        $dataArray = $this->DB()
+            ->query(sprintf('SELECT * FROM %s', $this->_table))
+            ->fetchAll(\PDO::FETCH_ASSOC);
+        $result = [];
+        $modelName = "App\\Models\\" . substr(ucfirst($this->_table), 0, -1);
+        foreach ($dataArray as $data) {
+            $user = $this->dbToModel($data, new $modelName());
+
+            $result[] = $user;
+        }
+
+        return $result;
+    }
+
+    public function find(int $id)
+    {
+        $data = $this->dbToModel($this->DB()
+            ->query(sprintf('SELECT * FROM %s where id=%d', $this->_table, $id))
+            ->fetch(\PDO::FETCH_ASSOC), $this);
+        return $data;
+    }
 
     /**
      * The insert method.

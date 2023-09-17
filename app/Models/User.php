@@ -18,29 +18,23 @@ class User extends Model
     protected $name;
     protected $created_at;
 
-    public function find(int $id)
-    {
-        $data = $this->dbToModel($this->DB()
-            ->query(sprintf('SELECT * FROM users where id=%d', [$id]))
-            ->fetch(\PDO::FETCH_ASSOC), $this);
-        return $data;
-    }
+    
 
-    public function getAll(): iterable
-    {
-        $dataArray = $this->DB()
-            ->query('SELECT * FROM users')
-            ->fetchAll(\PDO::FETCH_ASSOC);
-        $result = [];
+    // public function getAll(): iterable
+    // {
+    //     $dataArray = $this->DB()
+    //         ->query('SELECT * FROM users')
+    //         ->fetchAll(\PDO::FETCH_ASSOC);
+    //     $result = [];
 
-        foreach ($dataArray as $data) {
-            $user = $this->dbToModel($data, new User());
+    //     foreach ($dataArray as $data) {
+    //         $user = $this->dbToModel($data, new User());
 
-            $result[] = $user;
-        }
+    //         $result[] = $user;
+    //     }
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     /**
      * Get the value of id

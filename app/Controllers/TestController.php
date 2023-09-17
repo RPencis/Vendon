@@ -2,17 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\Test;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouteCollection;
 
-class TestController
+class TestController extends BaseController
 {
     public function newTestAction(RouteCollection $routes)
     {
         $postData = $_POST;
-
-        print '<pre>';
-        var_dump($_POST);
-        print '</pre>';
-        exit;
+        
+        $this->Redirect("/answer/".$postData['selected_test']);
     }
 }
