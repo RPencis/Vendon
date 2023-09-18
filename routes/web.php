@@ -15,4 +15,6 @@ $routes = new RouteCollection();
 
 $routes->add('new-test', new Route(constant('URL_SUBFOLDER') . '/new-test', ['controller' => 'TestController', 'method'=>'newTestAction'],[],[],'',[],['POST']));
 $routes->add('answer', new Route(constant('URL_SUBFOLDER') . '/answer/{testId}', ['controller' => 'AnswerController', 'method'=>'showAction'], ['testId' => '[0-9]+']));
+$routes->add('answer-result', new Route(constant('URL_SUBFOLDER') . '/result/{testId}', ['controller' => 'AnswerController', 'method'=>'resultAction'], ['testId' => '[0-9]+']));
+$routes->add('save-answers', new Route(constant('URL_SUBFOLDER') . '/save-answers/{testId}', ['controller' => 'AnswerController', 'method'=>'answerAction'],[],[],'',[],['POST']));
 $routes->add('homepage', new Route(constant('URL_SUBFOLDER') . '/', array('controller' => 'PageController', 'method'=>'indexAction'), array()));

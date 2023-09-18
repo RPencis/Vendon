@@ -1,0 +1,22 @@
+.question-block{
+    display: none;
+}
+
+.answer-block {
+    margin: auto;
+    width: 75%;
+    border: 1px solid black;
+    box-shadow: 4px 3px 6px gray;
+    padding: 10px;
+    text-align: center;
+}
+
+.answer-block:hover {
+    background-color: blue;
+    color: white;
+}
+
+.answer-block.selected {
+    background-color: blue;
+    color: white;
+}

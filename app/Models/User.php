@@ -18,24 +18,6 @@ class User extends Model
     protected $name;
     protected $created_at;
 
-    
-
-    // public function getAll(): iterable
-    // {
-    //     $dataArray = $this->DB()
-    //         ->query('SELECT * FROM users')
-    //         ->fetchAll(\PDO::FETCH_ASSOC);
-    //     $result = [];
-
-    //     foreach ($dataArray as $data) {
-    //         $user = $this->dbToModel($data, new User());
-
-    //         $result[] = $user;
-    //     }
-
-    //     return $result;
-    // }
-
     /**
      * Get the value of id
      */
@@ -94,5 +76,11 @@ class User extends Model
         $this->created_at = $created_at;
 
         return $this;
+    }
+
+    public function save() {
+        if(is_null($this->id)){
+
+        }
     }
 }

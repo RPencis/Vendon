@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Test;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Models\User;
 use Symfony\Component\Routing\RouteCollection;
 
 class TestController extends BaseController
@@ -11,7 +10,12 @@ class TestController extends BaseController
     public function newTestAction(RouteCollection $routes)
     {
         $postData = $_POST;
-        
-        $this->Redirect("/answer/".$postData['selected_test']);
+
+        $userModel = new User();
+        $result = $userModel->insert(['name' => $postData['userName']]);
+
+        $_SESSION["userId"] = $result;
+
+        $this->Redirect("/answer/" . $postData['selected_test']);
     }
 }
