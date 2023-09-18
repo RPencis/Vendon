@@ -1,6 +1,10 @@
 # Vendon
 ## Šo vajag obligāi
 php.ini nomainīt **session.auto_start=0** uz **session.auto_start=1**
+## Composer
+Projektā tiek izmantotas pāris trešo pušu bibliotēkas
+tas nozīmē ka pirms projekta palaišanas ir nepieciešams projekta **root** mapē izmantojot **cmd**
+palaist **composer install**
 
 ## Darbināšana
 Es datubāzei izmantojo **xampp** iebūvēto MySQL risinājumu
